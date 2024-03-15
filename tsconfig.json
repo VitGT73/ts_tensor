@@ -3,9 +3,9 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
-      "@datafactory/*": ["core/datafactory/*"],
-      "@helpers/*": ["core/helpers/*"],
-      "@fixtures/*": ["core/fixtures/*"]
+      "@datafactory/*": ["lib/datafactory/*"],
+      "@helpers/*": ["lib/helpers/*"],
+      "@fixtures/*": ["lib/fixtures/*"]
     }
   }
 }
