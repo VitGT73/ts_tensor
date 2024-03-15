@@ -1,0 +1,44 @@
+{
+  "name": "ts_tensor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "codegen": "npx playwright codegen --viewport-size=1400,1080 demoqa.com",
+      "test": "npx playwright test tests/ --project=chromium",
+      "test:head": "npx playwright test tests/ --headed --project=chromium",
+      "test:debug": "npx playwright test tests/ --debug --headed --project=chromium",
+      "test:all": "npx playwright test tests/",
+      "test:chromium": "npx playwright test tests/ui/ --project=chromium",
+      "test:firefox": "npx playwright test tests/ui/ --project=firefox",
+      "test:webkit": "npx playwright test tests/ui/ --project=webkit",
+      "test:api": "npx playwright test tests/api --project=api",
+      "test:smoke": "npx playwright test tests/ --grep @smoke --project=chromium",
+      "test:non-smoke": "npx playwright test tests/ --grep-invert @smoke --project=chromium",
+      "test:my": "npx playwright test my.spec.ts --project=chromium",
+      "test:login": "npx playwright test login.spec.ts --headed --project=chromium",
+      "ui": "npx playwright test --ui --project=chromium",
+      "lint": "eslint .",
+      "lint:fix": "eslint . --fix",
+      "prettier": "prettier . --check",
+      "prettier:fix": "prettier . --write",
+      "husky:force": "git commit -m 'forcing the commit' --no-verify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.27",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.2.5",
+    "typescript": "^5.4.2",
+    "husky": "^8.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

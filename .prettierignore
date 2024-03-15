@@ -1,0 +1,21 @@
+# Playwright Specific
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+summary.json
+
+package-lock.json
+package.json
+
+# IDE - VSCode
+.vscode/*
+
+# System Files
+.DS_Store
+Thumbs.db
+{"mode":"full","isActive":false}
+
+/docs/
+README.md
