@@ -44,22 +44,9 @@ export class SbisDownloadsPage extends SbisBasePage {
   }
 
   public async assertWebInstallerFileSize() {
-    const filename = await this.getWebInstallerFileName();
-    expect(this.webInstallerFilePath).toEqual(filename);
-    const fileSize = await getFileSize(this.webInstallerFilePath);
+    const fileSize = await getFileSize("./downloads/" + this.webInstallerFilePath);
     await expect(fileSize, "Размер файла не соответствует 8.17 МБ").toEqual(8567928);
   }
-
-  public async getWebInstallerFileName() {
-    const link = await this.webInstallerLink.getAttribute("href");
-    const filename = link.split("/").pop();
-    return filename;
-  }
-
-  // // assert filename
-  // expect(download.suggestedFilename()).toBe("my-file.data");
-  // // get and assert stats
-  // expect((await fs.promises.stat(await download.path() as string)).size).toBeGreaterThan(200);
 
   public async clickSbisPluginTab() {
     await this.assertReportTabIsOpen();

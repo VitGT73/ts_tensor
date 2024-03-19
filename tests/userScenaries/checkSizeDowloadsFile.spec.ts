@@ -17,7 +17,6 @@ test.describe("Пользовательский сценарий №1", () => {
     await sbisDownloadsPage.clickSbisPluginTab();
     await sbisDownloadsPage.assertPluginTabIsOpen();
     await sbisDownloadsPage.clickWebInstallerLink();
-    await sbisDownloadsPage.page.waitForTimeout(10);
     await sbisDownloadsPage.assertWebInstallerFileSize();
   });
 });
