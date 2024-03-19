@@ -14,21 +14,20 @@ test.describe.skip("Сравнение размеров картинок в бл
   }) => {
     await sbisHomePage.open();
     await sbisHomePage.assertPageUrl();
-    await sbisHomePage.header.contactsLink.click()
-    await sbisContactsPage.assertPageUrl()
-    const pagePromise = sbisContactsPage.page.context().waitForEvent('page');
-    await sbisContactsPage.tensorBanner.click()
+    await sbisHomePage.header.contactsLink.click();
+    await sbisContactsPage.assertPageUrl();
+    const pagePromise = sbisContactsPage.page.context().waitForEvent("page");
+    await sbisContactsPage.tensorBanner.click();
     const newPage = await pagePromise;
     // await expect(newPage).toHaveURL('https://tensor.ru/')
 
     // const np = await newPage.innerHTML('//head');
     // console.log(np)
     // await newPage.bringToFront()
-    await expect(newPage.locator("//div[p[text()='Сила в людях']]")).toBeVisible()
+    await expect(newPage.locator("//div[p[text()='Сила в людях']]")).toBeVisible();
     // await expect(newPage.locator('//title')).toContainText('Тензор — IT-компания')
 
-
-    await tensorHomePage.initPage(newPage)
+    await tensorHomePage.initPage(newPage);
     // tensorAboutPage.initPage(newPage)
     await tensorHomePage.assertPageUrl();
     await tensorHomePage.assertPageTitle();
@@ -43,14 +42,10 @@ test.describe.skip("Сравнение размеров картинок в бл
     // await tensorAboutPage.assertPageUrl();
   });
 
-  test("Сравниваем размеры картинок", async ({
-    tensorHomePage,
-    tensorAboutPage,
-  }) => {
+  test("Сравниваем размеры картинок", async ({ tensorHomePage, tensorAboutPage }) => {
     await tensorHomePage.open();
     await tensorHomePage.assertPageUrl();
-    await tensorHomePage.aboutLink.click()
+    await tensorHomePage.aboutLink.click();
     await tensorAboutPage.assertPageUrl();
   });
-
 });

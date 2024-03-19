@@ -24,7 +24,7 @@ export class TensorBasePage {
   }
 
   public async initPage(page: Page) {
-    this.page = page
+    this.page = page;
   }
 }
 

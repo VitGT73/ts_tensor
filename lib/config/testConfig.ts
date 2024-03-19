@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { PlaywrightTestConfig } from "@playwright/test";
 
 // Config to hold extra properties
 export interface TestConfig extends PlaywrightTestConfig {

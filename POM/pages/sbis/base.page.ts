@@ -1,7 +1,6 @@
 import { type Page, expect } from "@playwright/test";
-import { SbisFooter } from '@components/sbis/footer';
-import { SbisHeader } from '@components/sbis/header';
-
+import { SbisFooter } from "@components/sbis/footer";
+import { SbisHeader } from "@components/sbis/header";
 
 export class SbisBasePage {
   readonly page: Page;
