@@ -3,9 +3,12 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
+      "@config/*": ["lib/config/*"],
+      "@fixtures/*": ["lib/fixtures/*"],
       "@datafactory/*": ["lib/datafactory/*"],
       "@helpers/*": ["lib/helpers/*"],
-      "@fixtures/*": ["lib/fixtures/*"]
+      "@pages/*": ["POM/pages/*"],
+      "@components/*": ["POM/components/*"]
     }
   }
 }

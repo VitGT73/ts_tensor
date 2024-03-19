@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "codegen": "npx playwright codegen --viewport-size=1400,1080 demoqa.com",
-      "test": "npx playwright test tests/ --project=chromium",
+      "codegen": "npx playwright codegen --viewport-size=1400,1080 sbis.ru",
+      "test": "ENV=test npx playwright test tests/ --project=chromium",
       "test:head": "npx playwright test tests/ --headed --project=chromium",
       "test:debug": "npx playwright test tests/ --debug --headed --project=chromium",
       "test:all": "npx playwright test tests/",
@@ -18,8 +18,8 @@
       "test:my": "npx playwright test my.spec.ts --project=chromium",
       "test:login": "npx playwright test login.spec.ts --headed --project=chromium",
       "ui": "npx playwright test --ui --project=chromium",
-      "lint": "eslint .",
-      "lint:fix": "eslint . --fix",
+      "lint": "eslint '**/*.{ts,tsx}'",
+      "lint:fix": "eslint '**/*.{ts,tsx}' --fix",
       "prettier": "prettier . --check",
       "prettier:fix": "prettier . --write",
       "husky:force": "git commit -m 'forcing the commit' --no-verify"
