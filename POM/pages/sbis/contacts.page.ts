@@ -1,4 +1,5 @@
 import { type Page, expect, Locator } from "@playwright/test";
+import Env from "@helpers/env";
 import { SbisBasePage } from "@pages/sbis/base.page";
 
 export class SbisContactsPage extends SbisBasePage {
@@ -29,8 +30,10 @@ export class SbisContactsPage extends SbisBasePage {
     await expect(this.page).not.toHaveURL(this.pageURL);
   }
 
-  public async assertSelectedRegion(region: string) {
-    await expect(this.selectedRegion).toContainText(region);
+  public async assertSelectedRegion(region?: string) {
+    const homeRegion = region ? region : Env.HOME_REGION;
+
+    await expect(this.selectedRegion).toContainText(homeRegion);
   }
 
   public async assertRegionListLoaded() {

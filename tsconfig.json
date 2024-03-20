@@ -3,7 +3,6 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
-      "@config/*": ["lib/config/*"],
       "@fixtures/*": ["lib/fixtures/*"],
       "@datafactory/*": ["lib/datafactory/*"],
       "@helpers/*": ["lib/helpers/*"],

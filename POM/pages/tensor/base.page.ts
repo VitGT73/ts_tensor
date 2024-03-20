@@ -1,4 +1,5 @@
 import { type Page, expect } from "@playwright/test";
+import Env from "@helpers/env";
 
 export class TensorBasePage {
   public page: Page;
@@ -8,7 +9,7 @@ export class TensorBasePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.tensorURL = "https://tensor.ru";
+    this.tensorURL = Env.TENSOR_URL;
   }
 
   public async open() {

@@ -1,7 +1,6 @@
-// import { test, expect } from '@playwright/test';
 import { test } from "@fixtures/pages.fixtures";
 
-test.describe.skip("Пользовательский сценарий №1", () => {
+test.describe("Пользовательский сценарий №1", () => {
   // test.beforeEach(async ({ page, homePage }) => {
   //   await homePage.load();
   // });
@@ -12,7 +11,7 @@ test.describe.skip("Пользовательский сценарий №1", () 
     await sbisHomePage.assertPageUrl();
     await sbisHomePage.header.contactsLink.click();
     await sbisContactsPage.assertPageUrl();
-    await sbisContactsPage.assertSelectedRegion("Оренбургская обл.");
+    await sbisContactsPage.assertSelectedRegion();
     await sbisContactsPage.selectedRegion.click();
     await sbisContactsPage.assertRegionListLoaded();
     await sbisContactsPage.selectRegionFromList("Камчатский край");

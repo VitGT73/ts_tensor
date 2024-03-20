@@ -1,16 +1,17 @@
 import { type Page, Locator, expect } from "@playwright/test";
-import { getFileSize } from "@helpers/file.utilites";
+import { getFileSize } from "@helpers/file.utilities";
 import { SbisBasePage } from "@pages/sbis/base.page";
+import Env from "@helpers/env";
 
 export class SbisDownloadsPage extends SbisBasePage {
   private sbisPluginTab: Locator;
   private webInstallerLink: Locator;
   public pluginLink: Locator;
   public pageReady: Locator;
-  public tabsWrapers: Locator;
   public pluginUrlPart: string;
   public reportUrlPart: string;
   public webInstallerFilePath: string;
+  private downloadsPath = Env.DOWNLOADS_PATH;
 
   constructor(page: Page) {
     super(page);
@@ -39,12 +40,12 @@ export class SbisDownloadsPage extends SbisBasePage {
     const downloadPromise = this.page.waitForEvent("download");
     await this.webInstallerLink.click();
     const download = await downloadPromise;
-    this.webInstallerFilePath = download.suggestedFilename();
-    await download.saveAs("./downloads/" + this.webInstallerFilePath);
+    this.webInstallerFilePath = this.downloadsPath + download.suggestedFilename();
+    await download.saveAs(this.webInstallerFilePath);
   }
 
   public async assertWebInstallerFileSize() {
-    const fileSize = await getFileSize("./downloads/" + this.webInstallerFilePath);
+    const fileSize = await getFileSize(this.webInstallerFilePath);
     await expect(fileSize, "Размер файла не соответствует 8.17 МБ").toEqual(8567928);
   }
 

@@ -195,3 +195,18 @@ Add to ```.husky/pre-commit```
 ##### Run Husky
 Если все таки нужно срочно закоммитить:
 ```git commit -m "forcing the commit" --no-verify```
+
+
+### Install Allure
+
+```bash
+npm i -D @playwright/test allure-playwright
+```
+Устанавливаем Allure для командной строки (если необходимо):
+   ```npm install allure-commandline --save-dev```
+
+
+Добавляем в ```playwright.config.js``` строку
+```js
+    reporter: [['html'], ['allure-playwright',{outputFolder:'allure-results'}]],
+```

@@ -1,4 +1,5 @@
 import { type Page, expect } from "@playwright/test";
+import Env from "@helpers/env";
 import { SbisFooter } from "@components/sbis/footer";
 import { SbisHeader } from "@components/sbis/header";
 
@@ -12,7 +13,7 @@ export class SbisBasePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.sbisURL = "https://sbis.ru";
+    this.sbisURL = Env.SBIS_URL;
     this.footer = new SbisFooter(page);
     this.header = new SbisHeader(page);
   }

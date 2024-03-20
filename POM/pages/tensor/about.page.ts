@@ -1,4 +1,5 @@
 import { type Page, Locator, expect } from "@playwright/test";
+import { allure } from "allure-playwright";
 import { TensorBasePage } from "@pages/tensor/base.page";
 
 export class TensorAboutPage extends TensorBasePage {
@@ -21,9 +22,6 @@ export class TensorAboutPage extends TensorBasePage {
   }
 
   public async assertAllImagesHaveSameSize() {
-    // const allure = require('allure');
-    // const allureAttach = allure.attachment;
-
     // Теперь найдем все изображения внутри этого элемента
     const images = await this.workingImages.all();
 
@@ -37,12 +35,16 @@ export class TensorAboutPage extends TensorBasePage {
       const width = await image.getAttribute("width");
       const height = await image.getAttribute("height");
       if (width !== firstWidth || height !== firstHeight) {
-        // allureAttach("Message", `Image sizes don't match! First: ${firstWidth} x ${firstHeight}, current: ${width} x ${height}`, allure.attachment_type.TEXT);
+        allure.attachment(
+          "Message",
+          `Image sizes don't match! First: ${firstWidth} x ${firstHeight}, current: ${width} x ${height}`,
+          "text/plain"
+        );
         throw new Error("Image sizes don't match");
       }
     }
 
-    // allureAttach("Message", `All images are the same size: ${firstWidth} x ${firstHeight}`, allure.attachment_type.TEXT);
+    allure.attachment("Message", `All images are the same size: ${firstWidth} x ${firstHeight}`, "text/plain");
   }
 }
 export default TensorAboutPage;

@@ -1,20 +1,17 @@
-import { devices } from "@playwright/test";
-import { PlaywrightTestConfig } from "@playwright/test";
-import { TestConfig } from "@config/testConfig";
-import { devConfig } from "@config/env/devConfig";
-import { prodConfig } from "@config/env/prodConfig";
-import { stageConfig } from "@config/env/stageConfig";
+import { defineConfig, devices } from "@playwright/test";
+import { config } from "dotenv";
+// import Env from "@config/env";
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+if (process.env.ENV) {
+  config({
+    path: `.env.${process.env.ENV}`,
+    override: true,
+  });
+} else {
+  config();
+}
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
-const defaultConfig: PlaywrightTestConfig = {
+export default defineConfig({
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -25,9 +22,11 @@ const defaultConfig: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["html"]],
-  // reporter: [['html'], ['allure-playwright', { outputFolder: 'allure-results' }]],
-  // reporter: process.env.CI ? [["github"], ["list"], ["html"], ["@currents/playwright"]] : [["list"], ["html"]],
+  // reporter: [["html"]],
+  // reporter: [["list"], ['html', { open: 'never' }], ['allure-playwright', { outputFolder: 'allure-results' }]],
+  reporter: process.env.CI
+    ? [["github"], ["list"], ["html", { open: "never" }], ["allure-playwright"]]
+    : [["list"], ["html"], ["allure-playwright"]],
   // globalTeardown: require.resolve('./utils/config/global-teardown'),
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -35,6 +34,7 @@ const defaultConfig: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
 
   /* Configure projects for major browsers */
@@ -54,15 +54,15 @@ const defaultConfig: PlaywrightTestConfig = {
       use: { ...devices["Desktop Safari"] },
     },
   ],
-};
+});
 
 // get the environment type from command line. If none, set it to stage
-const environment = process.env.TEST_ENV || "stage";
+// const environment = process.env.TEST_ENV || "stage";
 
-// config object with default configuration and environment specific configuration
-const config: TestConfig = {
-  ...defaultConfig,
-  ...(environment === "prod" ? prodConfig : environment === "stage" ? stageConfig : devConfig),
-};
+// // config object with default configuration and environment specific configuration
+// const config: TestConfig = {
+//   ...defaultConfig,
+//   ...(environment === "prod" ? prodConfig : environment === "stage" ? stageConfig : devConfig),
+// };
 
-export default config;
+// export default config;

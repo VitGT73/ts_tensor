@@ -1,5 +1,5 @@
 import { test } from "@fixtures/pages.fixtures";
-import { deleteDirectory } from "@helpers/file.utilites";
+import { deleteDirectory } from "@helpers/file.utilities";
 
 test.describe("Пользовательский сценарий №1", () => {
   test.beforeAll(async () => {

@@ -1,7 +1,7 @@
 // import { test, expect } from '@playwright/test';
 import { test, expect } from "@fixtures/pages.fixtures";
 
-test.describe.skip("Сравнение размеров картинок в блоке 'Работаем'", () => {
+test.describe("Сравнение размеров картинок в блоке 'Работаем'", () => {
   // test.beforeEach(async ({ page, homePage }) => {
   //   await homePage.load();
   // });
@@ -35,7 +35,6 @@ test.describe.skip("Сравнение размеров картинок в бл
 
     // const bd = await newPage.innerHTML('//body');
     // console.log(bd)
-    await tensorHomePage.assertPowerInPeopleBlockIsPresent();
 
     // console.log(tensorHomePage.pageURL)
     // await tensorHomePage.aboutLink.click()
@@ -47,5 +46,7 @@ test.describe.skip("Сравнение размеров картинок в бл
     await tensorHomePage.assertPageUrl();
     await tensorHomePage.aboutLink.click();
     await tensorAboutPage.assertPageUrl();
+    await tensorAboutPage.assertWorkingBlockIsPresent();
+    await tensorAboutPage.assertAllImagesHaveSameSize();
   });
 });
