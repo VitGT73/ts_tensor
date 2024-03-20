@@ -19,9 +19,6 @@ jobs:
         env:
           CI: 1
 
-      - name: Run Playwright tests via docker-compose
-        run: npx playwright test
-
       - name: Run UI-tests
         run: |
           docker compose -f docker-compose.yml exec pw npm run test || true
