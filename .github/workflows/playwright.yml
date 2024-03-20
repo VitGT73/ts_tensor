@@ -1,27 +1,42 @@
 name: Playwright Tests
-on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+on: workflow_dispatch
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Checkout (copy) gh-pages repository to GitHub runner
+        uses: actions/checkout@v4
         with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
+          ref: gh-pages
+          path: ./.github/gh-pages
+
+      - name: Run Dockerfile with Playwright
+        run: docker-compose -f docker-compose.yml up -d
+        env:
+          CI: 1
+
+      - name: Run Playwright tests via docker-compose
         run: npx playwright test
-      - uses: actions/upload-artifact@v4
-        if: always()
+
+      - name: Run UI-tests
+        run: |
+          docker compose -f docker-compose.yml exec pw npm run test || true
+
+      - name: Copy history from gh-pages to allure-results before run Allure-generate
+        run: |
+          sudo rsync -av --delete ./.github/gh-pages/history/ ./allure-results/history
+
+      - name: Generate Allure report to allure-report
+        run: docker compose -f docker-compose-pytest.yml exec pw allure generate --clean
+
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          token: ${{ secrets.GHP_TOKEN }}
+          branch: gh-pages
+          folder: allure-report
+          clean: true

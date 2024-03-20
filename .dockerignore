@@ -1,0 +1,21 @@
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+/.vscode/
+/allure-report/
+/allure-results/
+/tests-examples/
+
+/.github/
+/.husky/
+/default/
+/docs/
+/downloads/
+.env

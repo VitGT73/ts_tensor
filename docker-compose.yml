@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  pw:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: playwright-tests
+
+    environment:
+      - CI=${CI:-0}
+      - ENV=test
+
+    ports:
+      - "9323:9323"
+
+    working_dir: /app
+
+    volumes:
+      - ./allure-report/:/app/allure-report/
+    stdin_open: true
+    tty: true
+    networks:
+      playwright:
+
+networks:
+  playwright:
+    driver: bridge
