@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Checkout (copy) gh-pages repository to GitHub runner
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           ref: gh-pages
           path: ./.github/gh-pages
@@ -18,10 +18,6 @@ jobs:
         run: docker-compose -f docker-compose.yml up -d
         env:
           CI: 1
-
-      - name: list file in dir 1
-        run: |
-          sudo ls -la
 
       - name: Run UI-tests
         run: |
