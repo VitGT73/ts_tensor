@@ -1,4 +1,4 @@
-import { test } from "@fixtures/pages.fixtures";
+import { expect, test } from "@fixtures/pages.fixtures";
 import { deleteDirectory } from "@helpers/file.utilities";
 
 test.describe("Пользовательский сценарий №1", () => {
@@ -14,8 +14,10 @@ test.describe("Пользовательский сценарий №1", () => {
     await sbisHomePage.footer.sbisDownloadLink.click();
 
     await sbisDownloadsPage.assertPageUrl();
-    await sbisDownloadsPage.clickSbisPluginTab();
-    await sbisDownloadsPage.assertPluginTabIsOpen();
+    await expect(async () => {
+      await sbisDownloadsPage.sbisPluginTab.click();
+      await sbisDownloadsPage.assertPluginTabIsOpen();
+    }).toPass();
     await sbisDownloadsPage.clickWebInstallerLink();
     await sbisDownloadsPage.assertWebInstallerFileSize();
   });

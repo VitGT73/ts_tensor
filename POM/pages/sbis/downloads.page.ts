@@ -4,7 +4,7 @@ import { SbisBasePage } from "@pages/sbis/base.page";
 import Env from "@helpers/env";
 
 export class SbisDownloadsPage extends SbisBasePage {
-  private sbisPluginTab: Locator;
+  public sbisPluginTab: Locator;
   private webInstallerLink: Locator;
   public pluginLink: Locator;
   public pageReady: Locator;
