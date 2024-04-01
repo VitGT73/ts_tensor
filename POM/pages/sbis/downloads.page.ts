@@ -18,7 +18,7 @@ export class SbisDownloadsPage extends SbisBasePage {
     this.pageURL = this.sbisURL + "/download";
     this.pageTitle = "Скачать СБИС и дополнительное ПО";
     this.sbisPluginTab = this.page.locator("//div[@data-id='plugin']");
-    this.webInstallerLink = this.page.getByRole("link", { name: "Скачать (Exe 8.17 МБ)" });
+    this.webInstallerLink = this.page.getByRole("link", { name: "Скачать (Exe 8.30 МБ)" });
 
     this.pluginUrlPart = "tab=plugin";
     this.reportUrlPart = "tab=ereport";
@@ -46,7 +46,7 @@ export class SbisDownloadsPage extends SbisBasePage {
 
   public async assertWebInstallerFileSize() {
     const fileSize = await getFileSize(this.webInstallerFilePath);
-    await expect(fileSize, "Размер файла не соответствует 8.17 МБ").toEqual(8567928);
+    await expect(fileSize, "Размер файла не соответствует 8.30 МБ").toEqual(8699000);
   }
 
   public async clickSbisPluginTab() {
