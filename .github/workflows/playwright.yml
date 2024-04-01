@@ -19,9 +19,17 @@ jobs:
         env:
           CI: 1
 
+      - name: list file in dir 1
+        run: |
+          sudo ll -la
+
       - name: Run UI-tests
         run: |
           docker compose -f docker-compose.yml exec pw npm run test || true
+
+      - name: list file in dir 2
+        run: |
+          sudo ll -la
 
       - name: Copy history from gh-pages to allure-results before run Allure-generate
         run: |
@@ -29,6 +37,10 @@ jobs:
 
       - name: Generate Allure report to allure-report
         run: docker compose -f docker-compose-pytest.yml exec pw allure generate --clean
+
+      - name: list file in dir 3
+        run: |
+          sudo ll -la
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
